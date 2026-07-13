@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?><mxfile version="21.5.0">
+  <diagram id="ERD_DIAGRAM" name="ERD Database WPMS">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Judul -->
+        <mxCell id="erd_title" value="Entity Relationship Diagram (ERD) - WPMS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="350" y="20" width="500" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Kategori -->
+        <mxCell id="e_kategori" value="KATEGORI&#10;- id_kategori (PK)&#10;- nama_kategori" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="100" y="150" width="160" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Produk -->
+        <mxCell id="e_produk" value="PRODUK&#10;- id_produk (PK)&#10;- id_kategori (FK)&#10;- kode_produk&#10;- nama_produk&#10;- stok" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="350" y="150" width="160" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- Relasi Kategori-Produk -->
+        <mxCell id="r_kat_prod" edge="1" parent="1" source="e_kategori" target="e_produk" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;">
+            <mxGeometry as="geometry" />
+        </mxCell>
+
+        <!-- Mutasi Stok -->
+        <mxCell id="e_mutasi" value="STOK_MUTASI&#10;- id_mutasi (PK)&#10;- id_produk (FK)&#10;- qty&#10;- jenis (Masuk/Keluar)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="600" y="100" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="r_prod_mutasi" edge="1" parent="1" source="e_produk" target="e_mutasi">
+            <mxGeometry as="geometry" />
+        </mxCell>
+        
+        <!-- Supplier -->
+        <mxCell id="e_supplier" value="SUPPLIER&#10;- id_supplier (PK)&#10;- nama_supplier" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="100" y="350" width="160" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Pembelian -->
+        <mxCell id="e_pembelian" value="PEMBELIAN&#10;- id_pembelian (PK)&#10;- id_supplier (FK)&#10;- total_harga&#10;- tanggal" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="350" y="350" width="160" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="r_sup_pemb" edge="1" parent="1" source="e_supplier" target="e_pembelian">
+            <mxGeometry as="geometry" />
+        </mxCell>
+
+        <!-- Detail Pembelian -->
+        <mxCell id="e_detpembelian" value="DETAIL_PEMBELIAN&#10;- id (PK)&#10;- id_pembelian (FK)&#10;- id_produk (FK)&#10;- jumlah" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="600" y="300" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="r_pemb_detpemb" edge="1" parent="1" source="e_pembelian" target="e_detpembelian">
+            <mxGeometry as="geometry" />
+        </mxCell>
+        <mxCell id="r_prod_detpemb" edge="1" parent="1" source="e_produk" target="e_detpembelian">
+            <mxGeometry as="geometry" />
+        </mxCell>
+
+        <!-- Pelanggan -->
+        <mxCell id="e_pelanggan" value="PELANGGAN&#10;- id_pelanggan (PK)&#10;- nama_pelanggan" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="100" y="550" width="160" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Penjualan -->
+        <mxCell id="e_penjualan" value="PENJUALAN&#10;- id_penjualan (PK)&#10;- id_pelanggan (FK)&#10;- total_bayar&#10;- uang_bayar" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="1">
+          <mxGeometry x="350" y="550" width="160" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="r_pel_penj" edge="1" parent="1" source="e_pelanggan" target="e_penjualan">
+            <mxGeometry as="geometry" />
+        </mxCell>
+        
+        <!-- Detail Penjualan -->
+        <mxCell id="e_detpenjualan" value="DETAIL_PENJUALAN&#10;- id (PK)&#10;- id_penjualan (FK)&#10;- id_produk (FK)&#10;- jumlah" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="1">
+          <mxGeometry x="600" y="500" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="r_penj_detpenj" edge="1" parent="1" source="e_penjualan" target="e_detpenjualan">
+            <mxGeometry as="geometry" />
+        </mxCell>
+        <mxCell id="r_prod_detpenj" edge="1" parent="1" source="e_produk" target="e_detpenjualan">
+            <mxGeometry as="geometry" />
+        </mxCell>
+
+        <!-- Pengguna -->
+        <mxCell id="e_pengguna" value="PENGGUNA / USER&#10;- id_pengguna (PK)&#10;- id_role (FK)&#10;- nama_lengkap" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#b0e3e6;strokeColor=#0e8088;" vertex="1" parent="1">
+          <mxGeometry x="850" y="150" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="r_usr_penj" edge="1" parent="1" source="e_pengguna" target="e_penjualan">
+            <mxGeometry as="geometry" />
+        </mxCell>
+        <mxCell id="r_usr_pemb" edge="1" parent="1" source="e_pengguna" target="e_pembelian">
+            <mxGeometry as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram id="DFD_DIAGRAM" name="DFD Level 0 (Context)">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <mxCell id="dfd_title" value="Data Flow Diagram (DFD Level 0) - Point of Sales Sistem" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=24;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="40" width="600" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Sistem Tengah -->
+        <mxCell id="d_sistem" value="Sistem Informasi&#10;POS &amp; Gudang WPMS" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="450" y="300" width="200" height="200" as="geometry" />
+        </mxCell>
+
+        <!-- Entitas Luar -->
+        <mxCell id="d_kasir" value="Kasir / Admin" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="100" y="200" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="d_manager" value="Manager / Owner" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="100" y="500" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="d_pelanggan" value="Pelanggan" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="850" y="200" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="d_supplier" value="Supplier" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="850" y="500" width="160" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Flows -->
+        <!-- Kasir -> Sistem -->
+        <mxCell id="df1" edge="1" parent="1" source="d_kasir" target="d_sistem" style="endArrow=classic;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.25;">
+            <mxGeometry as="geometry" />
+        </mxCell>
+        <mxCell id="label_df1" value="Kredensial Login, Data Master,&#10;Data Transaksi Jual/Beli" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="df1">
+            <mxGeometry x="0.1" y="-20" as="geometry" />
+        </mxCell>
+        
+        <!-- Sistem -> Kasir -->
+        <mxCell id="df2" edge="1" parent="1" source="d_sistem" target="d_kasir" style="endArrow=classic;html=1;exitX=0;exitY=0.75;entryX=1;entryY=1;">
+            <mxGeometry as="geometry" />
+        </mxCell>
+        <mxCell id="label_df2" value="Status Sukses, Notif Stok Limit,&#10;Struk Bukti" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="df2">
+            <mxGeometry x="0.1" y="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Manager -> Sistem -->
+        <!-- Sistem -> Manager -->
+        <mxCell id="df3" edge="1" parent="1" source="d_sistem" target="d_manager" style="endArrow=classic;html=1;">
+            <mxGeometry as="geometry" />
+        </mxCell>
+        <mxCell id="label_df3" value="Laporan Keuangan, Laba,&#10;Audit Sistem Log" style="edgeLabel;html=1;align=center;" vertex="1" connectable="0" parent="df3">
+            <mxGeometry x="0.2" y="-20" as="geometry" />
+        </mxCell>
+
+        <!-- Pelanggan -> Sistem -->
+        <!-- Sistem -> Pelanggan -->
+        <mxCell id="df4" edge="1" parent="1" source="d_sistem" target="d_pelanggan" style="endArrow=classic;html=1;">
+            <mxGeometry as="geometry" />
+        </mxCell>
+        <mxCell id="label_df4" value="Struk Nota &amp; Belanjaan" style="edgeLabel;html=1;align=center;" vertex="1" connectable="0" parent="df4">
+            <mxGeometry x="0.2" y="-20" as="geometry" />
+        </mxCell>
+        
+        <!-- Supplier -> Sistem -->
+        <mxCell id="df5" edge="1" parent="1" source="d_supplier" target="d_sistem" style="endArrow=classic;html=1;">
+            <mxGeometry as="geometry" />
+        </mxCell>
+        <mxCell id="label_df5" value="Faktur Pembelian Stok,&#10;Suplai Barang" style="edgeLabel;html=1;align=center;" vertex="1" connectable="0" parent="df5">
+            <mxGeometry x="-0.2" y="-20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram id="FLOW_DIAGRAM" name="Flowchart Kasir POS">
+    <mxGraphModel dx="1000" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <mxCell id="f_title" value="Flowchart Modul Transaksi POS (Kasir)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=20;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="250" y="30" width="400" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f_start" value="Mulai" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="364" y="100" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f_pilih_agen" value="Pilih Data Pelanggan&#10;/ Tamu Biasa" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="329" y="200" width="170" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="fe1" edge="1" parent="1" source="f_start" target="f_pilih_agen" style="endArrow=classic;html=1;"><mxGeometry as="geometry" /></mxCell>
+
+        <mxCell id="f_scan" value="Scan Barcode /&#10;Pilih Produk" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="344" y="300" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fe2" edge="1" parent="1" source="f_pilih_agen" target="f_scan" style="endArrow=classic;html=1;"><mxGeometry as="geometry" /></mxCell>
+
+        <mxCell id="f_cek_stok" value="Stok &gt; QTY?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="354" y="400" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="fe3" edge="1" parent="1" source="f_scan" target="f_cek_stok" style="endArrow=classic;html=1;"><mxGeometry as="geometry" /></mxCell>
+
+        <mxCell id="f_stok_habis" value="Gagal, Tampilkan Alert Stok Tidak Kurang" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="550" y="420" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fe3a" edge="1" parent="1" source="f_cek_stok" target="f_stok_habis" style="endArrow=classic;html=1;">
+            <mxGeometry as="geometry" />
+        </mxCell>
+        <mxCell id="label_fe3a" value="TIDAK" style="edgeLabel;html=1;align=center;" vertex="1" connectable="0" parent="fe3a">
+            <mxGeometry x="-0.3" y="-15" as="geometry" />
+        </mxCell>
+        <!-- Kembali mutar -->
+        <mxCell id="fe3b_kembali" edge="1" parent="1" source="f_stok_habis" target="f_scan" style="endArrow=classic;html=1;exitX=0.5;exitY=0;entryX=1;entryY=0.5;">
+            <mxGeometry as="geometry">
+                <Array as="points"><mxPoint x="620" y="330" /></Array>
+            </mxGeometry>
+        </mxCell>
+
+        <mxCell id="f_add_cart" value="Masuk Keranjang&#10;Hitung Subtotal" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="344" y="550" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fe4" edge="1" parent="1" source="f_cek_stok" target="f_add_cart" style="endArrow=classic;html=1;">
+            <mxGeometry as="geometry" />
+        </mxCell>
+        <mxCell id="label_fe4" value="YA" style="edgeLabel;html=1;align=center;" vertex="1" connectable="0" parent="fe4">
+            <mxGeometry x="0" y="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="f_more" value="Tambah&#10;Barang Lagi?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="650" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="fe5" edge="1" parent="1" source="f_add_cart" target="f_more" style="endArrow=classic;html=1;"><mxGeometry as="geometry" /></mxCell>
+        
+        <mxCell id="fe5a" edge="1" parent="1" source="f_more" target="f_scan" style="endArrow=classic;html=1;exitX=0;exitY=0.5;entryX=0;entryY=0.5;">
+           <mxGeometry as="geometry"><Array as="points"><mxPoint x="250" y="700" /><mxPoint x="250" y="330" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="label_fe5a" value="YA" style="edgeLabel;html=1;align=center;" vertex="1" connectable="0" parent="fe5a">
+            <mxGeometry x="-0.8" y="-15" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f_checkout" value="Checkout &amp;&#10;Input Tunai" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="344" y="800" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fe6" edge="1" parent="1" source="f_more" target="f_checkout" style="endArrow=classic;html=1;">
+            <mxGeometry as="geometry" />
+        </mxCell>
+        <mxCell id="label_fe6" value="TIDAK" style="edgeLabel;html=1;align=center;" vertex="1" connectable="0" parent="fe6">
+            <mxGeometry x="0" y="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="f_simpan_db" value="Simpan Penjualan DB,&#10;Kurangi Stok,&#10;Catat Audit Log" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="329" y="900" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="fe7" edge="1" parent="1" source="f_checkout" target="f_simpan_db" style="endArrow=classic;html=1;"><mxGeometry as="geometry" /></mxCell>
+
+        <mxCell id="f_struk" value="Cetak Nota / Struk" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="1010" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="fe8" edge="1" parent="1" source="f_simpan_db" target="f_struk" style="endArrow=classic;html=1;"><mxGeometry as="geometry" /></mxCell>
+        
+        <mxCell id="f_end" value="Selesai" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="364" y="1130" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fe9" edge="1" parent="1" source="f_struk" target="f_end" style="endArrow=classic;html=1;"><mxGeometry as="geometry" /></mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
